@@ -20,31 +20,45 @@ curl -X POST \
 -d '{"email": "example@example.com", "password": "password123"}' \
 http://localhost:6001/register
 
-curl -X POST \
--H "Content-Type: application/json" \
--d '{"email": "example@example.com", "password": "password123"}' \
-http://localhost:6001/login
+ACCESS_TOKEN=$(curl -X POST -H "Content-Type: application/json" -d '{"email": "example@example.com", "password": "password123"}' http://localhost:6001/login | jq -r '.token')
 
 curl -X GET \
--H "Authorization: Bearer <your_token_here>" \
+-H "Authorization: Bearer $ACCESS_TOKEN" \
 http://localhost:6001/check_token_status
+
+curl -X GET 'http://localhost:6001/search?Name=<name>&ClassOf=<class_of>&Program=<program>&Skills=<skills>&Minor=<minor>&Achievements=<achievements>&ProjectTitle=<project_title>&Interest=<interest>'
+
+curl -X GET 'http://localhost:6001/retrieve-info?user_id=<user_id>'
+
+curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer <access_token>" -d '{"skill_name": "<skill_name>"}' http://localhost:6001/skills
+
+curl -X PATCH -H "Content-Type: application/json" -H "Authorization: Bearer <access_token>" -d '{"skill_name": "<new_skill_name>"}' http://localhost:6001/skills/<skill_id>
+
+curl -X DELETE -H "Authorization: Bearer <access_token>" http://localhost:6001/skills/<skill_id>
+
+curl -X GET http://localhost:6001/skills
+
+curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer <access_token>" -d '{"skill_name": "<skill_name>"}' http://localhost:6001/user/skills
+
+curl -X PATCH -H "Content-Type: application/json" -H "Authorization: Bearer <access_token>" -d '{"skill_name": "<new_skill_name>"}' http://localhost:6001/user/skills/<user_skill_id>
+
+curl -X DELETE -H "Authorization: Bearer <access_token>" http://localhost:6001/user/skills/<user_skill_id>
+
+curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer <access_token>" -d '{"full_name": "<full_name>", "profile_picture_url": "<profile_picture_url>", "major": "<major>", "minor": "<minor>", "graduation_year": "<graduation_year>", "aspiration_statement": "<aspiration_statement>", "linkedin_url": "<linkedin_url>", "resume_url": "<resume_url>"}' http://localhost:6001/profile
+
+curl -X PATCH -H "Content-Type: application/json" -H "Authorization: Bearer <access_token>" -d '{"full_name": "<full_name>", "profile_picture_url": "<profile_picture_url>", "major": "<major>", "minor": "<minor>", "graduation_year": "<graduation_year>", "aspiration_statement": "<aspiration_statement>", "linkedin_url": "<linkedin_url>", "resume_url": "<resume_url>"}' http://localhost:6001/profile
+
+curl -X DELETE -H "Authorization: Bearer <access_token>" http://localhost:6001/profile
+
+curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer <access_token>" -d '{"title": "<title>", "description": "<description>", "date_achieved": "<date_achieved>"}' http://localhost:6001/achievements
+
+curl -X PATCH -H "Content-Type: application/json" -H "Authorization: Bearer <access_token>" -d '{"title": "<title>", "description": "<description>", "date_achieved": "<date_achieved>"}' http://localhost:6001/achievements/<achievement_id>
+
+curl -X DELETE -H "Authorization: Bearer <access_token>" http://localhost:6001/achievements/<achievement_id>
+
+curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer <access_token>" -d '{"title": "<title>", "description": "<description>", "start_date": "<start_date>", "end_date": "<end_date>", "project_url": "<project_url>", "images": "<images>"}' http://localhost:6001/final-year-project
+
+curl -X PATCH -H "Content-Type: application/json" -H "Authorization: Bearer <access_token>" -d '{"title": "<title>", "description": "<description>", "start_date": "<start_date>", "end_date": "<end_date>", "project_url": "<project_url>", "images": "<images>"}' http://localhost:6001/final-year-project/<project_id>
+
+curl -X DELETE -H "Authorization: Bearer <access_token>" http://localhost:6001/final-year-project/<project_id>
 ```
-
-
-Zip folder contains:
-- Folder named 'db_api' with Flask REST API. Config file with db credentials and JWT key. Dockerfile for the API.
-- Folder named 'resources' with our sql file
-- Env file with Docker Postgres credentials
-- Docker-compose file for easy scaling to further services in the future and postgres/api definitions + exposure
-- README file with docker commands and sample endpoint calls
-- Requirements.txt file for Docker
-
-API Specs:
-- Login/Register/JWT_check endpoints
-- Migration feature added for easy DB schema changes
-- CORS feature added for access via React app over browser
-- Rate-limiting added (20 reqs/min per ip) to prevent attacks
-- Prepared statements to avoid sql injection attacks
-- JWT Integrated for session management
-- Flask Compress added for quick REST calls
-- Hosted on PORT 6001, exposed through Docker. Running in debug mod
