@@ -13,7 +13,7 @@ from config import username, password, secret_key
 
 db = SQLAlchemy()
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{username}:{password}@localhost/studentdirectory'
+app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{username}:{password}@postgres_container/studentdirectory'
 app.config['SECRET_KEY'] = secret_key
 app.config['JWT_SECRET_KEY'] = secret_key
 db = SQLAlchemy(app)
