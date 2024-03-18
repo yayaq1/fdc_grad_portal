@@ -13,7 +13,7 @@ from config import username, password, secret_key
 
 db = SQLAlchemy()
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{username}:{password}@postgres_container/studentdirectory'
+app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{username}:{password}@localhost/studentdirectory'
 app.config['SECRET_KEY'] = secret_key
 app.config['JWT_SECRET_KEY'] = secret_key
 db = SQLAlchemy(app)
@@ -124,7 +124,9 @@ def login():
     if not user.check_password(password):
         return jsonify({'error': 'Invalid email or password'}), 401
     
-    token = create_access_token(identity=email, expires_delta=timedelta(hours=1))
+    user = User.query.filter_by(email=email).first()
+
+    token = create_access_token(identity=user.id, expires_delta=timedelta(hours=1))
     
     return jsonify({'token': token}), 200
 
@@ -295,11 +297,11 @@ def add_user_skill():
     if not skill:
         return jsonify({'error': 'Skill not found'}), 404
     
-    user_skill = UserSkill.query.filter_by(user_id=current_user.id, skill_id=skill.id).first()
+    user_skill = UserSkill.query.filter_by(user_id=current_user, skill_id=skill.id).first()
     if user_skill:
         return jsonify({'error': 'User skill already exists'}), 400
     
-    new_user_skill = UserSkill(user_id=current_user.id, skill_id=skill.id)
+    new_user_skill = UserSkill(user_id=current_user, skill_id=skill.id)
     db.session.add(new_user_skill)
     db.session.commit()
     
@@ -318,7 +320,7 @@ def update_user_skill(user_skill_id):
     if not skill:
         return jsonify({'error': 'Skill not found'}), 404
     
-    user_skill = UserSkill.query.filter_by(id=user_skill_id, user_id=current_user.id).first()
+    user_skill = UserSkill.query.filter_by(id=user_skill_id, user_id=current_user).first()
     if not user_skill:
         return jsonify({'error': 'User skill not found'}), 404
     
@@ -331,7 +333,7 @@ def update_user_skill(user_skill_id):
 @jwt_required()
 def delete_user_skill(user_skill_id):
     current_user = get_jwt_identity()
-    user_skill = UserSkill.query.filter_by(id=user_skill_id, user_id=current_user.id).first()
+    user_skill = UserSkill.query.filter_by(id=user_skill_id, user_id=current_user).first()
     if not user_skill:
         return jsonify({'error': 'User skill not found'}), 404
     
@@ -354,11 +356,11 @@ def add_profile():
     linkedin_url = data.get('linkedin_url')
     resume_url = data.get('resume_url')
     
-    profile = Profile.query.filter_by(user_id=current_user.id).first()
+    profile = Profile.query.filter_by(user_id=current_user).first()
     if profile:
         return jsonify(message='Profile already exists'), 400
     
-    new_profile = Profile(user_id=current_user.id, full_name=full_name, profile_picture_url=profile_picture_url,
+    new_profile = Profile(user_id=current_user, full_name=full_name, profile_picture_url=profile_picture_url,
                             major=major, minor=minor, graduation_year=graduation_year,
                             aspiration_statement=aspiration_statement, linkedin_url=linkedin_url,
                             resume_url=resume_url)
@@ -382,7 +384,7 @@ def update_profile():
     linkedin_url = data.get('linkedin_url')
     resume_url = data.get('resume_url')
     
-    profile = Profile.query.filter_by(user_id=current_user.id).first()
+    profile = Profile.query.filter_by(user_id=current_user).first()
     if not profile:
         return jsonify(message='Profile not found'), 404
     
@@ -406,7 +408,7 @@ def update_profile():
 def delete_profile():
     current_user = get_jwt_identity()
     
-    profile = Profile.query.filter_by(user_id=current_user.id).first()
+    profile = Profile.query.filter_by(user_id=current_user).first()
     if not profile:
         return jsonify(message='Profile not found'), 404
     
@@ -424,7 +426,7 @@ def add_achievement():
     description = data.get('description')
     date_achieved = data.get('date_achieved')
     
-    achievement = Achievement(user_id=current_user.id, title=title, description=description, date_achieved=date_achieved)
+    achievement = Achievement(user_id=current_user, title=title, description=description, date_achieved=date_achieved)
     db.session.add(achievement)
     db.session.commit()
     
@@ -439,7 +441,7 @@ def update_achievement(achievement_id):
     description = data.get('description')
     date_achieved = data.get('date_achieved')
     
-    achievement = Achievement.query.filter_by(id=achievement_id, user_id=current_user.id).first()
+    achievement = Achievement.query.filter_by(id=achievement_id, user_id=current_user).first()
     if not achievement:
         return jsonify(message='Achievement not found'), 404
     
@@ -455,7 +457,7 @@ def update_achievement(achievement_id):
 def delete_achievement(achievement_id):
     current_user = get_jwt_identity()
     
-    achievement = Achievement.query.filter_by(id=achievement_id, user_id=current_user.id).first()
+    achievement = Achievement.query.filter_by(id=achievement_id, user_id=current_user).first()
     if not achievement:
         return jsonify(message='Achievement not found'), 404
     
@@ -476,7 +478,7 @@ def add_final_year_project():
     project_url = data.get('project_url')
     images = data.get('images')
     
-    final_year_project = FinalYearProject(user_id=current_user.id, title=title, description=description,
+    final_year_project = FinalYearProject(user_id=current_user, title=title, description=description,
                                             start_date=start_date, end_date=end_date, project_url=project_url,
                                             images=images)
     db.session.add(final_year_project)
@@ -496,7 +498,7 @@ def update_final_year_project(project_id):
     project_url = data.get('project_url')
     images = data.get('images')
     
-    final_year_project = FinalYearProject.query.filter_by(id=project_id, user_id=current_user.id).first()
+    final_year_project = FinalYearProject.query.filter_by(id=project_id, user_id=current_user).first()
     if not final_year_project:
         return jsonify({'message': 'Project not found'}), 404
     
@@ -515,7 +517,7 @@ def update_final_year_project(project_id):
 def delete_final_year_project(project_id):
     current_user = get_jwt_identity()
     
-    final_year_project = FinalYearProject.query.filter_by(id=project_id, user_id=current_user.id).first()
+    final_year_project = FinalYearProject.query.filter_by(id=project_id, user_id=current_user).first()
     if not final_year_project:
         return jsonify({'message': 'Project not found'}), 404
     
