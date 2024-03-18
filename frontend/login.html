@@ -58,11 +58,6 @@
                   </label>
                   <div class="kutup-divider-20px"></div><input type="submit" data-wait="Please wait..." class="kutup-button-white w-button" value="Sign In">
                 </form>
-                <div class="success-message w-form-done">
-                  <div>Thank you! Your submission has been received!</div>
-                </div>
-                <div class="error-message w-form-fail">
-                  <div>Oops! Something went wrong while submitting the form.</div>
                 </div>
               </div>
             </div>
@@ -100,54 +95,7 @@
   <script>
     // Wait for the DOM to load
     document.addEventListener('DOMContentLoaded', function(event) {
-      // Get the login form by its ID or class
-      const loginForm = document.getElementById('wf-form-Sign-In');
-  
-      // Listen for form submission
-      loginForm.addEventListener('submit', function(e) {
-        e.preventDefault(); // Prevent the default form submission
-        
-        // Get the values from the input fields
-        const email = document.getElementById('Email-3').value;
-        const password = document.getElementById('Password').value;
-  
-        // Build the request payload
-        const payload = {
-          email: email,
-          password: password
-        };
-  
-        // Send a POST request to the backend
-        fetch('http://51.142.184.185:6001/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(payload)
-        })
-        .then(response => response.json()) // Parse the JSON response
-        .then(data => {
-          if (data.token) {
-            // Store the token in sessionStorage
-            sessionStorage.setItem('accessToken', data.token);
-  
-            // Redirect to the profile page or another page
-            window.location.href = '/profile.html'; // Update with the correct path
-          } else {
-            // Handle errors, such as showing a login error message
-            console.error('Login failed:', data.message);
-          }
-        })
-        .catch(error => {
-          console.error('Error during login:', error);
-        });
-      });
-    });
-  </script>
-  <script>
-    // Wait for the DOM to load
-    document.addEventListener('DOMContentLoaded', function(event) {
-      // Get the login form by its ID or class
+      // Get the login form by its ID
       const loginForm = document.getElementById('wf-form-Sign-In');
   
       // Listen for form submission
@@ -172,25 +120,32 @@
           },
           body: JSON.stringify(payload)
         })
-        .then(response => response.json()) // Parse the JSON response
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+          }
+          return response.json(); // Parse the JSON response
+        })
         .then(data => {
           if (data.token) {
             // Store the token in sessionStorage
             sessionStorage.setItem('accessToken', data.token);
   
-            // Redirect to the profile page or another page
-            window.location.href = '/profile.html'; // Update with the correct path
+            // Redirect to the profile page
+            window.location.href = 'profile.html'; // Update with the correct path to the profile page
           } else {
             // Handle errors, such as showing a login error message
-            console.error('Login failed:', data.message);
+            alert('Login failed: ' + (data.message || 'Unknown error'));
           }
         })
         .catch(error => {
-          console.error('Error during login:', error);
+          alert('Error during login: ' + error.message);
         });
       });
     });
   </script>
+  
+  
   
 </body>
 </html>
