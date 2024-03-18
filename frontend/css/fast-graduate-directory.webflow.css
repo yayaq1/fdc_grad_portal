@@ -4,8 +4,8 @@
   --grey: #dbd8cc;
   --urban: #989572;
   --profile_body: rgba(166, 180, 192, .28);
-  --transparent: rgba(255, 255, 255, 0);
   --kütüp-library--dim-grey: #6e6e6e;
+  --transparent: rgba(255, 255, 255, 0);
   --kütüp-library--burntsienna: #e76f51;
   --kütüp-library--dark-slate-grey: #264653;
   --elements-webflow-library--neutral--300: #eff0f6;
@@ -450,6 +450,7 @@
 }
 
 .text-block-7 {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Oxygen, Fira Sans, Droid Sans, sans-serif;
   font-size: 12px;
   line-height: 16px;
   display: inline-block;
@@ -654,6 +655,7 @@
 .text-block-15 {
   clear: left;
   color: var(--heading);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Oxygen, Fira Sans, Droid Sans, sans-serif;
   text-decoration: none;
   display: inline-block;
 }
@@ -768,10 +770,12 @@
 .heading {
   margin-top: 0;
   margin-bottom: 20px;
+  font-family: Vollkorn, serif;
 }
 
 .text-block-19 {
   text-align: justify;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Oxygen, Fira Sans, Droid Sans, sans-serif;
 }
 
 .div-block-20-copy-edit {
@@ -817,6 +821,7 @@
 
 .text-block-20 {
   text-align: justify;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Oxygen, Fira Sans, Droid Sans, sans-serif;
 }
 
 .div-block-32 {
@@ -828,6 +833,7 @@
 
 .link {
   color: var(--heading);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Oxygen, Fira Sans, Droid Sans, sans-serif;
 }
 
 .div-block-33 {
@@ -842,6 +848,10 @@
   display: flex;
 }
 
+.list-item, .text-block-21 {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Oxygen, Fira Sans, Droid Sans, sans-serif;
+}
+
 .image-6, .image-7, .image-8 {
   border-radius: 10px;
 }
@@ -851,6 +861,9 @@
   color: var(--heading);
   background-color: rgba(56, 152, 236, 0);
   border-radius: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Oxygen, Fira Sans, Droid Sans, sans-serif;
   font-size: 14px;
   font-weight: 700;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, .2);
@@ -874,6 +887,7 @@
 .button-2 {
   color: var(--heading);
   background-color: rgba(56, 152, 236, 0);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Oxygen, Fira Sans, Droid Sans, sans-serif;
   font-weight: 700;
 }
 
@@ -927,6 +941,7 @@
   width: 100%;
   height: auto;
   color: var(--heading);
+  text-align: left;
   margin-bottom: 0;
   padding-bottom: 10px;
   font-size: 12px;
@@ -1014,6 +1029,7 @@
 .text-block-22 {
   color: var(--heading);
   margin-right: 0;
+  font-family: Vollkorn, serif;
 }
 
 .submit-button {
@@ -1094,6 +1110,7 @@
   background-color: rgba(255, 255, 255, 0);
   margin-bottom: 0;
   padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Oxygen, Fira Sans, Droid Sans, sans-serif;
   display: block;
   overflow: visible;
 }
@@ -1103,6 +1120,7 @@
 }
 
 .text-field-s.head {
+  font-family: Verdana, Geneva, sans-serif;
   font-size: 24px;
   font-weight: 400;
   line-height: 30px;
@@ -1146,6 +1164,7 @@
   border: 0 #000;
   margin-bottom: 0;
   padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Oxygen, Fira Sans, Droid Sans, sans-serif;
   overflow: visible;
 }
 
@@ -1357,11 +1376,28 @@
 }
 
 .nav-text {
+  color: var(--white);
   cursor: pointer;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Oxygen, Fira Sans, Droid Sans, sans-serif;
+  display: inline-block;
 }
 
 .nav-text:hover {
   color: var(--grey);
+}
+
+.nav-text.w--current {
+  color: var(--white);
+  padding: 0;
+}
+
+.nav-text.current.w--current {
+  color: var(--white);
+}
+
+.nav-text.current.current-res.w--current {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Oxygen, Fira Sans, Droid Sans, sans-serif;
 }
 
 .image-10 {
@@ -1416,6 +1452,7 @@
   background-color: var(--heading);
   color: var(--white);
   border-radius: 50px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Oxygen, Fira Sans, Droid Sans, sans-serif;
   font-size: 14px;
   font-weight: 700;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, .2);
@@ -1488,6 +1525,7 @@
   padding: 14px 20px;
   font-size: 17px;
   font-weight: 700;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
 }
 
 .kutup-button-white:hover {
@@ -1549,10 +1587,14 @@
 
 .kutup-field {
   height: 60px;
+  background-color: var(--white);
+  color: var(--grey);
   border: 1px solid #e1e1e1;
   border-radius: 8px;
   margin-bottom: 0;
   padding-left: 14px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Oxygen, Fira Sans, Droid Sans, sans-serif;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
 }
 
 .kutup-field::-ms-input-placeholder {
@@ -1585,11 +1627,13 @@
 
 .kutup-display-2.white-text {
   color: var(--heading);
+  font-family: Vollkorn, serif;
 }
 
 .kutup-small-top-text {
   color: var(--kütüp-library--burntsienna);
   margin-bottom: 15px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Oxygen, Fira Sans, Droid Sans, sans-serif;
   font-size: 15px;
   font-weight: 700;
 }
@@ -1707,9 +1751,10 @@
 }
 
 .brix---paragraph-default {
+  color: var(--grey);
   text-align: justify;
   margin-bottom: 0;
-  font-family: Verdana, Geneva, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Oxygen, Fira Sans, Droid Sans, sans-serif;
   font-size: 18px;
   line-height: 30px;
 }
@@ -1737,15 +1782,19 @@
 }
 
 .brix---inner-container-574px---center {
-  max-width: 574px;
+  max-width: 90%;
   margin-left: auto;
   margin-right: auto;
 }
 
 .brix---hero-card-bg-image {
+  grid-column-gap: 50px;
+  grid-row-gap: 50px;
   background-image: linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .6));
   border-radius: 40px;
+  flex-flow: column;
   padding: 196px 40px;
+  display: block;
   position: relative;
   bottom: 0;
   overflow: visible;
@@ -1774,9 +1823,10 @@
 }
 
 .brix---heading-h1-size-2 {
+  color: var(--white);
   margin-top: 0;
-  margin-bottom: 16px;
-  font-family: Verdana, Geneva, sans-serif;
+  margin-bottom: 0;
+  font-family: Vollkorn, serif;
   font-size: 50px;
   font-weight: 700;
   line-height: 66px;
@@ -1790,6 +1840,7 @@
 }
 
 .paragraph {
+  color: var(--grey);
   margin-top: 20px;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Oxygen, Fira Sans, Droid Sans, sans-serif;
   font-size: 12px;
@@ -1816,8 +1867,7 @@
 
 .dropdown-link {
   border-bottom: 1px solid var(--white);
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  border-radius: 0;
   top: auto;
 }
 
@@ -1856,7 +1906,7 @@
 }
 
 .div-block-copy {
-  width: 80%;
+  width: 100%;
   height: 5em;
   grid-column-gap: 20px;
   grid-row-gap: 20px;
@@ -1865,8 +1915,7 @@
   border-radius: 50px;
   justify-content: center;
   align-items: center;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 60px auto;
   padding-left: 2%;
   padding-right: 2%;
   display: flex;
@@ -1874,6 +1923,52 @@
   top: auto;
   bottom: auto;
   box-shadow: 10px 10px 20px rgba(0, 0, 0, .2);
+}
+
+.footer-links:hover {
+  filter: invert(50%);
+  color: var(--grey);
+}
+
+.navbar-logo-left-container-copy {
+  z-index: 5;
+  width: 1030px;
+  max-width: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 15px 20px;
+}
+
+.navbar-logo-left-container-copy.shadow-three {
+  width: 100%;
+  max-width: none;
+  background-color: #355c7d;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 20px 40px;
+}
+
+.section-3 {
+  font-family: Vollkorn, serif;
+}
+
+.text-block-24 {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Oxygen, Fira Sans, Droid Sans, sans-serif;
+}
+
+.dropdown-list-2 {
+  border-radius: 10px;
+}
+
+.dropdown-list-2.w--open {
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.heading-4 {
+  font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
 }
 
 @media screen and (min-width: 1440px) {
@@ -1946,6 +2041,11 @@
 
   .div-block-copy {
     top: auto;
+  }
+
+  .navbar-logo-left-container-copy.shadow-three {
+    padding-left: 40px;
+    padding-right: 40px;
   }
 }
 
@@ -2098,6 +2198,7 @@
 
   .field-label {
     min-width: auto;
+    text-align: left;
     padding-bottom: 10px;
     font-size: 14px;
     line-height: 14px;
@@ -2202,7 +2303,11 @@
 
   .nav-text {
     cursor: pointer;
-    font-size: 14px;
+    font-size: 20px;
+  }
+
+  .nav-text.current.w--current {
+    font-size: 20px;
   }
 
   .div-block-47 {
@@ -2248,17 +2353,42 @@
   }
 
   .brix---paragraph-default {
-    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Oxygen, Fira Sans, Droid Sans, sans-serif;
     line-height: 24px;
+  }
+
+  .brix---inner-container-574px---center {
+    max-width: 80%;
   }
 
   .brix---container-default {
     max-width: none;
   }
 
+  .brix---heading-h1-size-2 {
+    font-family: Vollkorn, serif;
+  }
+
+  .paragraph {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Oxygen, Fira Sans, Droid Sans, sans-serif;
+    font-size: 14px;
+  }
+
   .div-block-copy {
-    width: 60%;
+    width: 80%;
     top: auto;
+  }
+
+  .navbar-logo-left-container-copy.shadow-three {
+    width: 100vw;
+    padding-left: 40px;
+    padding-right: 40px;
   }
 }
 
@@ -2347,6 +2477,7 @@
   }
 
   .field-label {
+    padding-top: 0;
     font-size: 10px;
     line-height: 12px;
   }
@@ -2357,9 +2488,11 @@
 
   .div-block-37 {
     margin-right: 10px;
+    padding-top: 0;
   }
 
   .div-block-46 {
+    max-width: 100%;
     grid-column-gap: 50px;
     grid-row-gap: 50px;
     border: 1px solid var(--heading);
@@ -2368,9 +2501,22 @@
     border-radius: 50px;
     justify-content: center;
     margin-top: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 10px 20px;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, .2);
+  }
+
+  .nav-text {
+    color: var(--heading);
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .nav-text:hover {
+    color: var(--kütüp-library--dim-grey);
+  }
+
+  .nav-text.current.current-res, .nav-text.current-res {
+    color: var(--heading);
   }
 
   .div-block-47 {
@@ -2719,6 +2865,14 @@
     top: auto;
     bottom: auto;
   }
+
+  .navbar-brand-copy {
+    padding-left: 0;
+  }
+
+  .navbar-logo-left-container-copy {
+    max-width: 100%;
+  }
 }
 
 @media screen and (max-width: 479px) {
@@ -2740,7 +2894,7 @@
   }
 
   .image {
-    max-width: 50%;
+    max-width: 80%;
   }
 
   .div-block {
@@ -2884,8 +3038,20 @@
   .nav-text {
     width: 100%;
     border-bottom: 1px solid var(--grey);
-    padding-top: 20px;
-    padding-bottom: 20px;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .nav-text:hover, .nav-text:active {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .nav-text.current {
+    color: var(--heading);
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 
   .image-10 {
@@ -3034,7 +3200,7 @@
     bottom: auto;
   }
 
-  .div-block-50 {
+  .div-block-50, .navbar-brand-copy {
     padding-top: 0;
   }
 }
