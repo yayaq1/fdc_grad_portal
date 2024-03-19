@@ -199,15 +199,18 @@ def retrieve_info():
     skill_list = [skill.skill_name for skill in skills]
     
     project = FinalYearProject.query.filter_by(user_id=user_id).first()
-    
-    
-    #achievements = Achievement.query.filter_by(user_id=user_id).all()
-    #for achievement in achievements:
-        #response['Achievements'].append({
-            #'Title': achievement.title,
-            #'Description': achievement.description,
-            #'DateAchieved': achievement.date_achieved
-        #})
+
+    achievements_list = []
+    experience = None  # Initialize with a default value
+
+    achievements = Achievement.query.filter_by(user_id=user_id).all()
+    for achievement in achievements:
+        achievements_list.append({
+            'Title': achievement.title,
+            'Description': achievement.description,
+            'DateAchieved': achievement.date_achieved
+        })
+        # If you want to set an experience variable, do it within this loop
 
     response = {
         'Name': profile.full_name,
@@ -219,7 +222,7 @@ def retrieve_info():
         'AspirationStatement': profile.aspiration_statement,
         'LinkedInURL': profile.linkedin_url,
         'ResumeURL': profile.resume_url,
-        #'Achievements': [],
+        'Achievements': achievements_list,
         'ProjectDetails': project.title if project else None,
         'ProjectImages': project.images if project else None,
         #'Experience': achievement.description if achievement else None,
@@ -234,6 +237,7 @@ def retrieve_info():
         }
     }
     
+
 
     return jsonify(response), 200
 
