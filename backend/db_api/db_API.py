@@ -200,6 +200,14 @@ def retrieve_info():
     
     project = FinalYearProject.query.filter_by(user_id=user_id).first()
     
+    achievements = Achievement.query.filter_by(user_id=user_id).all()
+    for achievement in achievements:
+        response['Achievements'].append({
+            'Title': achievement.title,
+            'Description': achievement.description,
+            'DateAchieved': achievement.date_achieved
+        })
+
     response = {
         'Name': profile.full_name,
         'ProfilePictureURL': profile.profile_picture_url,
@@ -225,13 +233,7 @@ def retrieve_info():
         }
     }
     
-    achievements = Achievement.query.filter_by(user_id=user_id).all()
-    for achievement in achievements:
-        response['Achievements'].append({
-            'Title': achievement.title,
-            'Description': achievement.description,
-            'DateAchieved': achievement.date_achieved
-        })
+
     return jsonify(response), 200
 
 @app.route('/skills', methods=['POST'])
