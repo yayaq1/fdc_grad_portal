@@ -200,13 +200,14 @@ def retrieve_info():
     
     project = FinalYearProject.query.filter_by(user_id=user_id).first()
     
-    achievements = Achievement.query.filter_by(user_id=user_id).all()
-    for achievement in achievements:
-        response['Achievements'].append({
-            'Title': achievement.title,
-            'Description': achievement.description,
-            'DateAchieved': achievement.date_achieved
-        })
+    
+    #achievements = Achievement.query.filter_by(user_id=user_id).all()
+    #for achievement in achievements:
+        #response['Achievements'].append({
+            #'Title': achievement.title,
+            #'Description': achievement.description,
+            #'DateAchieved': achievement.date_achieved
+        #})
 
     response = {
         'Name': profile.full_name,
@@ -218,10 +219,10 @@ def retrieve_info():
         'AspirationStatement': profile.aspiration_statement,
         'LinkedInURL': profile.linkedin_url,
         'ResumeURL': profile.resume_url,
-        'Achievements': [],
+        #'Achievements': [],
         'ProjectDetails': project.title if project else None,
         'ProjectImages': project.images if project else None,
-        'Experience': achievement.description if achievement else None,
+        #'Experience': achievement.description if achievement else None,
         'Email': User.query.get(user_id).email,
         'FinalYearProject': {
             'Title': project.title if project else None,
